@@ -2,17 +2,16 @@
 
 argument_specs:
   main:
-    short_description: Role to use as template for new roles of Potos Linux Clients.
+    short_description: Install and configure LibreOffice.
     options:
-      potos_template_example_var:
-        description:
-          - Example variable
-        type: str
+      potos_libreoffice_fonts:
+        description: Fonts that you want to install.
+        type: list
+        elements: str
         required: no
-        default: 'hello world!'
-      potos_template_example_list:
-        description:
-          - List of items used for action xyz
+        default: []
+      potos_libreoffice_templates:
+        description: List of templates that you want to install
         type: list
         elements: str
         required: no
