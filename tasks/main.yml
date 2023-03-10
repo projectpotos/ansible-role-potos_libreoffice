@@ -1,9 +1,24 @@
 ---
 
-- name: Example task to deploy a template
-  ansible.builtin.template:
-    src: 'potos.example.j2'
-    dest: '/potos.example'
+- name: Install libreoffice
+  ansible.builtin.package:
+    name: libreoffice
+    state: present
+
+- name: Install libreoffice fonts
+  ansible.builtin.package:
+    name: "{{ item }}"
+  loop: "{{ potos_libreoffice_fonts }}"
+  when:
+    - potos_libreoffice_fonts | length > 0
+
+- name: Install libreoffice templates
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ potos_libreoffice_template_directory }}"
     owner: root
     group: root
-    mode: '0755'
+    mode: 0644
+  loop: "{{ potos_libreoffice_templates }}"
+  when:
+    - potos_libreoffice_templates | length > 0

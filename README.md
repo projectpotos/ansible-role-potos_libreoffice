@@ -1,17 +1,12 @@
-
-<<<<<<< HEAD
 # Ansible Role - potos_libreoffice
-=======
-# Ansible Role - potos\_template
 
 Role to use as template for new roles of Potos Linux Clients.
 
-[![Test](https://github.com/projectpotos/ansible-role-potos_template/actions/workflows/test.yml/badge.svg)](https://github.com/projectpotos/ansible-role-potos_template/actions/workflows/test.yml)
+[![Test](https://github.com/projectpotos/ansible-role-potos_libreoffice/actions/workflows/test.yml/badge.svg)](https://github.com/projectpotos/ansible-role-potos_libreoffice/actions/workflows/test.yml)
 
 ## Example Playbook
 
-As this role is tested via Molecule one can use [that
-playbook](./molecule/default/converge.yml) as a starting point:
+As this role is tested via Molecule one can use [that playbook](./molecule/default/converge.yml) as a starting point:
 
 ```yaml
 ---
@@ -19,10 +14,9 @@ playbook](./molecule/default/converge.yml) as a starting point:
 - name: Converge
   hosts: all
   gather_facts: yes
-  tasks:
-    - name: run role
-      ansible.builtin.include_role:
-        name: 'ansible-role-potos_template'
+
+  roles:
+    - ansible-role-potos_libreoffice
 ```
 
 ## Role Variables
@@ -32,18 +26,17 @@ The default variables are defined in [defaults/main.yml](./defaults/main.yml):
 ```yaml
 ---
 
-# Example variable
-potos_template_example_var: 'hello world!'
+# List fonts that you want to install. These are packages containing the fonts.
+potos_libreoffice_fonts: []
 
-# List of items used for action xyz
-potos_template_example_list: []
-
+# List of templates that you want to install.
+potos_libreoffice_templates: []
 ```
 
 Another option is to use `ansible-doc` to read the argument specification:
 
 ```sh
-ansible-doc --type role -r . main ansible-role-potos_template
+ansible-doc --type role -r . main ansible-role-potos_libreoffice
 ```
 
 ## Requirements

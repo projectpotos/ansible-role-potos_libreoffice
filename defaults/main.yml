@@ -1,7 +1,7 @@
 ---
 
-# Example variable
-potos_template_example_var: 'hello world!'
+# List fonts that you want to install. These are packages containing the fonts.
+potos_libreoffice_fonts: []
 
-# List of items used for action xyz
-potos_template_example_list: []
+# List of templates that you want to install.
+potos_libreoffice_templates: []
