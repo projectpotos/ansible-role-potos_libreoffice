@@ -15,18 +15,21 @@ As this role is tested via Molecule one can use [that playbook](./molecule/defau
   hosts: all
   gather_facts: yes
 
-  roles:
-    - role: ansible-role-potos_libreoffice
-      photos_libreoffice_templates:
-        - source: "https://extensions.libreoffice.org/assets/downloads/1011/1677853134/CV-deux-colonnes-sobre-v2.ott"
-        - name: squares.ott
-          source: "https://extensions.libreoffice.org/assets/downloads/z/1cm-paper.ott"
-          destination_directory: sales
-      potos_libreoffice_fonts:
-        # Ubuntu does not have a package for these fonts.
-        # - name: adobe-source-sans-pro-fonts
-        - source: https://github.com/adobe-fonts/source-sans/blob/release/TTF/SourceSans3-Regular.ttf
-          family: source-sans
+  tasks:
+    - name: run role
+      ansible.builtin.include_role:
+        name: ansible-role-potos_libreoffice
+      vars:
+        potos_libreoffice_templates:
+          - source: "https://extensions.libreoffice.org/assets/downloads/1011/1677853134/CV-deux-colonnes-sobre-v2.ott"
+          - name: squares.ott
+            source: "https://extensions.libreoffice.org/assets/downloads/z/1cm-paper.ott"
+            destination_directory: sales
+        potos_libreoffice_fonts:
+          # Ubuntu does not have a package for these fonts.
+          # - name: adobe-source-sans-pro-fonts
+          - source: https://github.com/adobe-fonts/source-sans/blob/release/TTF/SourceSans3-Regular.ttf
+            family: source-sans
 ```
 
 ## Role Variables
