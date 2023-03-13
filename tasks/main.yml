@@ -29,7 +29,7 @@
   loop_control:
     label: "{{ item.name | default(item.source | basename) }}"
   notify:
-    - Builds font information cache files 
+    - Builds font information cache files
   when:
     - potos_libreoffice_fonts | length > 0
     - item.source is defined
