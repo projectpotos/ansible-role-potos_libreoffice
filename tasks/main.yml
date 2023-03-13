@@ -65,6 +65,7 @@
     owner: root
     group: root
     mode: 0644
+    force: no
   loop: "{{ potos_libreoffice_templates }}"
   loop_control:
     label: "{{ item.name | default(item.source | basename) }}"
