@@ -8,3 +8,4 @@
     - name: Check if LibreOffice can show a version
       ansible.builtin.command:
         cmd: libreoffice --version
+      changed_when: no

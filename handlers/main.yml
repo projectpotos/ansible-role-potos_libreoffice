@@ -1,5 +1,5 @@
 ---
 
-- name: Builds font information cache files 
+- name: Builds font information cache files
   ansible.builtin.command:
     cmd: fc-cache -f -v

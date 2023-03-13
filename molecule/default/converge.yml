@@ -5,7 +5,7 @@
   gather_facts: yes
 
   tasks:
-    - name: run role
+    - name: Run role
       ansible.builtin.include_role:
         name: ansible-role-potos_libreoffice
       vars:
