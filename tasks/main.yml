@@ -12,13 +12,28 @@
   when:
     - potos_libreoffice_fonts | length > 0
 
+- name: Create libreoffice template directory for specific fonts
+  ansible.builtin.file:
+    path: "{{ potos_libreoffice_template_directory }}/{{ item.destination_directory }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  loop: "{{ potos_libreoffice_templates }}"
+  loop_control:
+    label: "{{ item.destination_directory | default('No destination directory specified.') }}"
+  when:
+    - item.destination_directory is defined
+
 - name: Install libreoffice templates
-  ansible.builtin.copy:
-    src: "{{ item }}"
-    dest: "{{ potos_libreoffice_template_directory }}"
+  ansible.builtin.get_url:
+    url: "{{ item.source }}"
+    dest: "{{ potos_libreoffice_template_directory }}/{{ item.destination_directory | default('') }}/{{ item.name | default(item.name | default('')) }}"
     owner: root
     group: root
     mode: 0644
   loop: "{{ potos_libreoffice_templates }}"
+  loop_control:
+    label: "{{ item.name | default(item.source | basename) }}"
   when:
     - potos_libreoffice_templates | length > 0
