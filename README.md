@@ -22,6 +22,11 @@ As this role is tested via Molecule one can use [that playbook](./molecule/defau
         - name: squares.ott
           source: "https://extensions.libreoffice.org/assets/downloads/z/1cm-paper.ott"
           destination_directory: sales
+      potos_libreoffice_fonts:
+        # Ubuntu does not have a package for these fonts.
+        # - name: adobe-source-sans-pro-fonts
+        - source: https://github.com/adobe-fonts/source-sans/blob/release/TTF/SourceSans3-Regular.ttf
+          family: source-sans
 ```
 
 ## Role Variables
@@ -32,6 +37,16 @@ The default variables are defined in [defaults/main.yml](./defaults/main.yml):
 ---
 
 # List fonts that you want to install. These are packages containing the fonts.
+#
+# Explanation of items in the list:
+# Either specify `name` or specify `url`.
+# name: (optional) The name of the package to install
+# source: (optional) The URL to the font, a `ttf` file.
+# family: (optional when `source` is specified) A name to store the fonts in.
+# potos_libreoffice_fonts:
+#   - name: adobe-source-sans-pro-fonts
+#   - source: https://github.com/adobe-fonts/source-sans/blob/release/TTF/SourceSans3-Regular.ttf
+#     family: source-sans
 potos_libreoffice_fonts: []
 
 # List of templates that you want to install.
@@ -46,6 +61,7 @@ potos_libreoffice_fonts: []
 #   - name: my_template.odt
 #     souce: "https://cloud.adfinis.com/remote.php/webdav/syintern/some/path/my_sales/template.odt"
 #     destination_directory: sales
+potos_libreoffice_templates: []
 ```
 
 Another option is to use `ansible-doc` to read the argument specification:

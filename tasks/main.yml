@@ -5,12 +5,44 @@
     name: libreoffice
     state: present
 
-- name: Install libreoffice fonts
-  ansible.builtin.package:
-    name: "{{ item }}"
+- name: Create font family directory
+  ansible.builtin.file:
+    path: "{{ potos_libreoffice_font_directory }}/{{ item.family }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
   loop: "{{ potos_libreoffice_fonts }}"
+  loop_control:
+    label: "{{ item.family | default('No family specified.') }}"
+  when:
+    - item.family is defined
+
+- name: Install font
+  ansible.builtin.get_url:
+    url: "{{ item.source }}"
+    dest: "{{ potos_libreoffice_font_directory }}/{{ item.family | default('') }}/{{ item.source | basename | default('') }}"
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ potos_libreoffice_fonts }}"
+  loop_control:
+    label: "{{ item.name | default(item.source | basename) }}"
+  notify:
+    - Builds font information cache files 
   when:
     - potos_libreoffice_fonts | length > 0
+    - item.source is defined
+
+- name: Install libreoffice font package
+  ansible.builtin.package:
+    name: "{{ item.name }}"
+  loop: "{{ potos_libreoffice_fonts }}"
+  loop_control:
+    label: "{{ item.name | default('No name specified.') }}"
+  when:
+    - potos_libreoffice_fonts | length > 0
+    - item.name is defined
 
 - name: Create libreoffice template directory for specific fonts
   ansible.builtin.file:
@@ -25,7 +57,7 @@
   when:
     - item.destination_directory is defined
 
-- name: Install libreoffice templates
+- name: Install libreoffice template
   ansible.builtin.get_url:
     url: "{{ item.source }}"
     dest: "{{ potos_libreoffice_template_directory }}/{{ item.destination_directory | default('') }}/{{ item.name | default(item.name | default('')) }}"
