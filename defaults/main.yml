@@ -1,6 +1,16 @@
 ---
 
 # List fonts that you want to install. These are packages containing the fonts.
+#
+# Explanation of items in the list:
+# Either specify `name` or specify `url`.
+# name: (optional) The name of the package to install
+# source: (optional) The URL to the font, a `ttf` file.
+# family: (optional when `source` is specified) A name to store the fonts in.
+# potos_libreoffice_fonts:
+#   - name: adobe-source-sans-pro-fonts
+#   - source: https://github.com/adobe-fonts/source-sans/blob/release/TTF/SourceSans3-Regular.ttf
+#     family: source-sans
 potos_libreoffice_fonts: []
 
 # List of templates that you want to install.
@@ -15,3 +25,4 @@ potos_libreoffice_fonts: []
 #   - name: my_template.odt
 #     souce: "https://cloud.adfinis.com/remote.php/webdav/syintern/some/path/my_sales/template.odt"
 #     destination_directory: sales
+potos_libreoffice_templates: []

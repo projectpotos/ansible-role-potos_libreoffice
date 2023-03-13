@@ -1,5 +1,7 @@
 ---
 
+potos_libreoffice_font_directory: /usr/local/share/fonts
+
 _potos_libreoffice_template_directory:
   Debian: /usr/lib/libreoffice/share/templates/common/offimisc
   RedHat: /usr/lib64/libreoffice/share/templates/common/personal
