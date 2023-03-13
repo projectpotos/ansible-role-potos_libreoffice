@@ -29,7 +29,7 @@ As this role is tested via Molecule one can use [that playbook](./molecule/defau
         potos_libreoffice_fonts:
           # Ubuntu does not have a package for these fonts.
           # - name: adobe-source-sans-pro-fonts
-          - source: https://github.com/adobe-fonts/source-sans/blob/release/TTF/SourceSans3-Regular.ttf
+          - source: "https://github.com/adobe-fonts/source-sans/raw/release/TTF/SourceSans3-Regular.ttf"
             family: source-sans
 ```
 

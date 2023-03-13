@@ -25,7 +25,6 @@
     owner: root
     group: root
     mode: 0644
-    force: no
   loop: "{{ potos_libreoffice_fonts }}"
   loop_control:
     label: "{{ item.name | default(item.source | basename) }}"
@@ -61,11 +60,10 @@
 - name: Install libreoffice template
   ansible.builtin.get_url:
     url: "{{ item.source }}"
-    dest: "{{ potos_libreoffice_template_directory }}/{{ item.destination_directory | default('') }}/{{ item.name | default(item.name | default('')) }}"
+    dest: "{{ potos_libreoffice_template_directory }}/{{ item.destination_directory | default('') }}/{{ item.name | default(item.source | basename) }}"
     owner: root
     group: root
     mode: 0644
-    force: no
   loop: "{{ potos_libreoffice_templates }}"
   loop_control:
     label: "{{ item.name | default(item.source | basename) }}"
