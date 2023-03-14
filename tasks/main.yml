@@ -18,23 +18,23 @@
   when:
     - item.family is defined
 
-- name: Install font
+- name: Install font from url
   ansible.builtin.get_url:
-    url: "{{ item.source }}"
-    dest: "{{ potos_libreoffice_font_directory }}/{{ item.family | default('') }}/{{ item.source | basename | default('') }}"
+    url: "{{ item.url }}"
+    dest: "{{ potos_libreoffice_font_directory }}/{{ item.family | default('') }}/{{ item.url | basename | default('') }}"
     owner: root
     group: root
     mode: 0644
   loop: "{{ potos_libreoffice_fonts }}"
   loop_control:
-    label: "{{ item.source | default('No source specified') }}"
+    label: "{{ item.url | default('No url specified') }}"
   notify:
     - Builds font information cache files
   when:
     - potos_libreoffice_fonts | length > 0
-    - item.source is defined
+    - item.url is defined
 
-- name: Install libreoffice font package
+- name: Install font from package
   ansible.builtin.package:
     name: "{{ item.name }}"
   loop: "{{ potos_libreoffice_fonts }}"
@@ -43,6 +43,20 @@
   when:
     - potos_libreoffice_fonts | length > 0
     - item.name is defined
+
+- name: Install font from src
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ potos_libreoffice_font_directory }}/{{ item.family | default('') }}/{{ item.src }}"
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ potos_libreoffice_fonts }}"
+  loop_control:
+    label: "{{ item.src | default('No src specified') }}"
+  when:
+    - potos_libreoffice_fonts | length > 0
+    - item.src is defined
 
 - name: Create libreoffice template directory for specific fonts
   ansible.builtin.file:
@@ -59,13 +73,13 @@
 
 - name: Install libreoffice template
   ansible.builtin.get_url:
-    url: "{{ item.source }}"
-    dest: "{{ potos_libreoffice_template_directory }}/{{ item.destination_directory | default('') }}/{{ item.name | default(item.source | basename) }}"
+    url: "{{ item.url }}"
+    dest: "{{ potos_libreoffice_template_directory }}/{{ item.destination_directory | default('') }}/{{ item.name | default(item.url | basename) }}"
     owner: root
     group: root
     mode: 0644
   loop: "{{ potos_libreoffice_templates }}"
   loop_control:
-    label: "{{ item.name | default(item.source | basename) }}"
+    label: "{{ item.name | default(item.url | basename) }}"
   when:
     - potos_libreoffice_templates | length > 0

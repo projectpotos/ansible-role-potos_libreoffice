@@ -21,4 +21,5 @@
         that:
           - "'SourceSans3-Regular.ttf' in libreoffice_available_fonts.stdout"
           - "'OpenSans-Regular.ttf' in libreoffice_available_fonts.stdout"
+          - "'EA Sports Covers SC 1.5.ttf' in libreoffice_available_fonts.stdout"
         quiet: yes
