@@ -60,9 +60,9 @@ potos_libreoffice_fonts: []
 # destination_directory: (optional) The directory to put the file in. This is relative to the path where LibreOffice expects templates to be.
 #
 # potos_libreoffice_templates:
-#   - souce: "https://cloud.adfinis.com/remote.php/webdav/syintern/some/path/my_company_template.odt"
-#   - name: my_template.odt
-#     souce: "https://cloud.adfinis.com/remote.php/webdav/syintern/some/path/my_sales/template.odt"
+#   - source: "https://extensions.libreoffice.org/assets/downloads/1011/1677853134/CV-deux-colonnes-sobre-v2.ott"
+#   - name: squares.ott
+#     source: "https://extensions.libreoffice.org/assets/downloads/z/1cm-paper.ott"
 #     destination_directory: sales
 potos_libreoffice_templates: []
 ```
