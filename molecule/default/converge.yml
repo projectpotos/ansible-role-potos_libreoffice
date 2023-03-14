@@ -15,7 +15,6 @@
             source: "https://extensions.libreoffice.org/assets/downloads/z/1cm-paper.ott"
             destination_directory: sales
         potos_libreoffice_fonts:
-          # Ubuntu does not have a package for these fonts.
-          # - name: adobe-source-sans-pro-fonts
+          - name: fonts-open-sans
           - source: "https://github.com/adobe-fonts/source-sans/raw/release/TTF/SourceSans3-Regular.ttf"
             family: source-sans

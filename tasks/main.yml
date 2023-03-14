@@ -27,7 +27,7 @@
     mode: 0644
   loop: "{{ potos_libreoffice_fonts }}"
   loop_control:
-    label: "{{ item.name | default(item.source | basename) }}"
+    label: "{{ item.source | default('No source specified') }}"
   notify:
     - Builds font information cache files
   when:
@@ -39,7 +39,7 @@
     name: "{{ item.name }}"
   loop: "{{ potos_libreoffice_fonts }}"
   loop_control:
-    label: "{{ item.name | default('No name specified.') }}"
+    label: "{{ item.name | default('No name specified') }}"
   when:
     - potos_libreoffice_fonts | length > 0
     - item.name is defined
@@ -53,7 +53,7 @@
     mode: 0755
   loop: "{{ potos_libreoffice_templates }}"
   loop_control:
-    label: "{{ item.destination_directory | default('No destination directory specified.') }}"
+    label: "{{ item.destination_directory | default('No destination directory specified') }}"
   when:
     - item.destination_directory is defined
 
