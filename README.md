@@ -17,20 +17,21 @@ As this role is tested via Molecule one can use [that playbook](./molecule/defau
   gather_facts: yes
 
   tasks:
-    - name: run role
+    - name: Run role
       ansible.builtin.include_role:
         name: ansible-role-potos_libreoffice
       vars:
         potos_libreoffice_templates:
-          - source: "https://extensions.libreoffice.org/assets/downloads/1011/1677853134/CV-deux-colonnes-sobre-v2.ott"
+          - url: "https://extensions.libreoffice.org/assets/downloads/1011/1677853134/CV-deux-colonnes-sobre-v2.ott"
           - name: squares.ott
-            source: "https://extensions.libreoffice.org/assets/downloads/z/1cm-paper.ott"
+            url: "https://extensions.libreoffice.org/assets/downloads/z/1cm-paper.ott"
             destination_directory: sales
         potos_libreoffice_fonts:
-          # Ubuntu does not have a package for these fonts.
-          # - name: adobe-source-sans-pro-fonts
-          - source: "https://github.com/adobe-fonts/source-sans/raw/release/TTF/SourceSans3-Regular.ttf"
+          - name: fonts-open-sans
+          - url: "https://github.com/adobe-fonts/source-sans/raw/release/TTF/SourceSans3-Regular.ttf"
             family: source-sans
+          - src: EA Sports Covers SC 1.5.ttf
+            family: my_fonts
 ```
 
 ## Role Variables
@@ -40,30 +41,36 @@ The default variables are defined in [defaults/main.yml](./defaults/main.yml):
 ```yaml
 ---
 
-# List fonts that you want to install. These are packages containing the fonts.
+# List fonts that you want to install. These include:
+# - packages containing the fonts. (`name`)
+# - URL that refer to a font file with the tff extension. (`url`)
+# - File that refer to a font file with the tff extension. (`src`)
 #
 # Explanation of items in the list:
 # Either specify `name` or specify `url`.
 # name: (optional) The name of the package to install
-# source: (optional) The URL to the font, a `ttf` file.
-# family: (optional when `source` is specified) A name to store the fonts in.
+# url: (optional) The URL to the font, a `ttf` file.
+# src: (optional) The path to the font, a `ttf` file.
+# family: (optional when `url` is specified) A name to store the fonts in.
 # potos_libreoffice_fonts:
 #   - name: adobe-source-sans-pro-fonts
-#   - source: https://github.com/adobe-fonts/source-sans/blob/release/TTF/SourceSans3-Regular.ttf
+#   - url: https://github.com/adobe-fonts/source-sans/blob/release/TTF/SourceSans3-Regular.ttf
 #     family: source-sans
+#   - src: EA Sports Covers SC 1.5.ttf
+#     family: my_fonts
 potos_libreoffice_fonts: []
 
 # List of templates that you want to install.
 #
 # Explanation of items in the list:
-# source: (required) The URL to the template.
+# url: (required) The URL to the template.
 # name: (optional) The name to call the file.
 # destination_directory: (optional) The directory to put the file in. This is relative to the path where LibreOffice expects templates to be.
 #
 # potos_libreoffice_templates:
-#   - source: "https://extensions.libreoffice.org/assets/downloads/1011/1677853134/CV-deux-colonnes-sobre-v2.ott"
+#   - url: "https://extensions.libreoffice.org/assets/downloads/1011/1677853134/CV-deux-colonnes-sobre-v2.ott"
 #   - name: squares.ott
-#     source: "https://extensions.libreoffice.org/assets/downloads/z/1cm-paper.ott"
+#     url: "https://extensions.libreoffice.org/assets/downloads/z/1cm-paper.ott"
 #     destination_directory: sales
 potos_libreoffice_templates: []
 ```
