@@ -9,3 +9,15 @@
       ansible.builtin.command:
         cmd: libreoffice --version
       changed_when: no
+
+    - name: List available fonts
+      ansible.builtin.command:
+        cmd: fc-list
+      register: libreoffice_available_fonts
+      changed_when: no
+
+    - name: Check if fonts are available
+      ansible.builtin.assert:
+        that:
+          - "'SourceSans3-Regular.ttf' in libreoffice_available_fonts.stdout"
+        quiet: yes
