@@ -32,3 +32,14 @@ potos_libreoffice_fonts: []
 #     url: "https://extensions.libreoffice.org/assets/downloads/z/1cm-paper.ott"
 #     destination_directory: sales
 potos_libreoffice_templates: []
+
+# List of palettes that you want to install.
+#
+# Explanation of items in the list:
+# url: (required) The URL to the palette.
+# name: (optional) The name to call the file.
+#
+# potos_libreoffice_palettes:
+#   - name: squares.soc
+#     url: "https://example.com/squares.soc"
+potos_libreoffice_palettes: []

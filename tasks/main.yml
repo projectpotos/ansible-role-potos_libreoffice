@@ -83,3 +83,16 @@
     label: "{{ item.name | default(item.url | basename) }}"
   when:
     - potos_libreoffice_templates | length > 0
+
+- name: Install libreoffice custom palette
+  ansible.builtin.get_url:
+    url: "{{ item.url }}"
+    dest: "{{ potos_libreoffice_palette_directory }}/{{ item.name }}"
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ potos_libreoffice_palettes }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - potos_libreoffice_palettes | length > 0

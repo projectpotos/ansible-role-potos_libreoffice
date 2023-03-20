@@ -16,3 +16,9 @@ argument_specs:
         elements: str
         required: no
         default: []
+      potos_libreoffice_palettes:
+        description: List of palettes that you want to install.
+        type: list
+        elements: str
+        required: no
+        default: []
