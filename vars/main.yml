@@ -9,7 +9,7 @@ potos_libreoffice_shared_directory: "{{ _potos_libreoffice_shared_directory[ansi
 
 _potos_libreoffice_template_directory:
   Debian: "{{ potos_libreoffice_shared_directory }}/templates/common/offimisc"
-  RedHat: "{{ potos_libreoffice_shared_directory}}templates/common/personal"
+  RedHat: "{{ potos_libreoffice_shared_directory }}templates/common/personal"
 potos_libreoffice_template_directory: "{{ _potos_libreoffice_template_directory[ansible_os_family] }}"
 
 potos_libreoffice_palette_directory: "{{ potos_libreoffice_shared_directory }}/palette"
