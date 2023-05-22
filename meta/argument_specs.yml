@@ -1,0 +1,24 @@
+---
+
+argument_specs:
+  main:
+    short_description: Install and configure LibreOffice.
+    options:
+      potos_libreoffice_fonts:
+        description: Fonts that you want to install.
+        type: list
+        elements: str
+        required: no
+        default: []
+      potos_libreoffice_templates:
+        description: List of templates that you want to install
+        type: list
+        elements: str
+        required: no
+        default: []
+      potos_libreoffice_palettes:
+        description: List of palettes that you want to install.
+        type: list
+        elements: str
+        required: no
+        default: []
