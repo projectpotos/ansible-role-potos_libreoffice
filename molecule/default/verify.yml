@@ -1,0 +1,25 @@
+---
+
+- name: Verify
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: Check if LibreOffice can show a version
+      ansible.builtin.command:
+        cmd: libreoffice --version
+      changed_when: no
+
+    - name: List available fonts
+      ansible.builtin.command:
+        cmd: fc-list
+      register: libreoffice_available_fonts
+      changed_when: no
+
+    - name: Check if fonts are available
+      ansible.builtin.assert:
+        that:
+          - "'SourceSans3-Regular.ttf' in libreoffice_available_fonts.stdout"
+          - "'OpenSans-Regular.ttf' in libreoffice_available_fonts.stdout"
+          - "'EA Sports Covers SC 1.5.ttf' in libreoffice_available_fonts.stdout"
+        quiet: yes
