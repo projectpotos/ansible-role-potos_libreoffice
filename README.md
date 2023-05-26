@@ -32,6 +32,11 @@ As this role is tested via Molecule one can use [that playbook](./molecule/defau
             family: source-sans
           - src: EA Sports Covers SC 1.5.ttf
             family: my_fonts
+          - src: fonts/Example.ttf
+            family: my_examples
+        potos_libreoffice_palettes:
+          - name: dracula.soc
+            url: "https://raw.githubusercontent.com/dracula/libreoffice/master/dracula.soc"
 ```
 
 ## Role Variables
@@ -78,7 +83,7 @@ potos_libreoffice_templates: []
 Another option is to use `ansible-doc` to read the argument specification:
 
 ```sh
-`ansible-doc --type role -r . main ansible-role-potos_libreoffice`
+ansible-doc --type role -r . main ansible-role-potos_libreoffice
 ```
 
 ## Requirements
