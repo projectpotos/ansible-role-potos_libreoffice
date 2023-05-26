@@ -14,6 +14,7 @@
           - name: squares.ott
             url: "https://extensions.libreoffice.org/assets/downloads/z/1cm-paper.ott"
             destination_directory: sales
+          - src: templates/free_printable_gift_certificate_template.ott
         potos_libreoffice_fonts:
           - name: fonts-open-sans
           - url: "https://github.com/adobe-fonts/source-sans/raw/release/TTF/SourceSans3-Regular.ttf"
@@ -23,3 +24,4 @@
         potos_libreoffice_palettes:
           - name: dracula.soc
             url: "https://raw.githubusercontent.com/dracula/libreoffice/master/dracula.soc"
+          - src: palettes/example.soc

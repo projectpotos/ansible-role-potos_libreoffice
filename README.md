@@ -25,12 +25,17 @@ As this role is tested via Molecule one can use [that playbook](./molecule/defau
           - name: squares.ott
             url: "https://extensions.libreoffice.org/assets/downloads/z/1cm-paper.ott"
             destination_directory: sales
+          - src: templates/free_printable_gift_certificate_template.ott
         potos_libreoffice_fonts:
           - name: fonts-open-sans
           - url: "https://github.com/adobe-fonts/source-sans/raw/release/TTF/SourceSans3-Regular.ttf"
             family: source-sans
           - src: EA Sports Covers SC 1.5.ttf
             family: my_fonts
+        potos_libreoffice_palettes:
+          - name: dracula.soc
+            url: "https://raw.githubusercontent.com/dracula/libreoffice/master/dracula.soc"
+          - src: palettes/example.soc
 ```
 
 ## Role Variables
