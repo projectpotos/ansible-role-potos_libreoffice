@@ -47,7 +47,7 @@
 - name: Install font from src
   ansible.builtin.copy:
     src: "{{ item.src }}"
-    dest: "{{ potos_libreoffice_font_directory }}/{{ item.family | default('') }}/{{ item.src }}"
+    dest: "{{ potos_libreoffice_font_directory }}/{{ item.family | default('') }}/{{ item.src | basename }}"
     owner: root
     group: root
     mode: 0644
