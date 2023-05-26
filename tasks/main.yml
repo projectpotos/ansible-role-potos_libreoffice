@@ -116,7 +116,7 @@
 - name: Install libreoffice custom palette from src
   ansible.builtin.copy:
     src: "{{ item.src }}"
-    dest: "{{ potos_libreoffice_palette_directory }}/{{ item.name | default (item.src | basename) }}"
+    dest: "{{ potos_libreoffice_palette_directory }}/{{ item.name | default(item.src | basename) }}"
     owner: root
     group: root
     mode: 0644
