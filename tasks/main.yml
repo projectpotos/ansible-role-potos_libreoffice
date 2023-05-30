@@ -71,7 +71,7 @@
   when:
     - item.destination_directory is defined
 
-- name: Install libreoffice template
+- name: Install libreoffice template from url
   ansible.builtin.get_url:
     url: "{{ item.url }}"
     dest: "{{ potos_libreoffice_template_directory }}/{{ item.destination_directory | default('') }}/{{ item.name | default(item.url | basename) }}"
@@ -80,19 +80,49 @@
     mode: 0644
   loop: "{{ potos_libreoffice_templates }}"
   loop_control:
-    label: "{{ item.name | default(item.url | basename) }}"
+    label: "{{ item.url | default('No url specified') }}"
   when:
     - potos_libreoffice_templates | length > 0
+    - item.url is defined
 
-- name: Install libreoffice custom palette
+- name: Install libreoffice template from src
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ potos_libreoffice_template_directory }}/{{ item.destination_directory | default('') }}/{{ item.src | basename }}"
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ potos_libreoffice_templates }}"
+  loop_control:
+    label: "{{ item.src | default('No src specified') }}"
+  when:
+    - potos_libreoffice_templates | length > 0
+    - item.src is defined
+
+- name: Install libreoffice custom palette from url
   ansible.builtin.get_url:
     url: "{{ item.url }}"
-    dest: "{{ potos_libreoffice_palette_directory }}/{{ item.name }}"
+    dest: "{{ potos_libreoffice_palette_directory }}/{{ item.name | default(item.url | basename) }}"
     owner: root
     group: root
     mode: 0644
   loop: "{{ potos_libreoffice_palettes }}"
   loop_control:
-    label: "{{ item.name }}"
+    label: "{{ item.url | default('No url specified') }}"
   when:
     - potos_libreoffice_palettes | length > 0
+    - item.url is defined
+
+- name: Install libreoffice custom palette from src
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ potos_libreoffice_palette_directory }}/{{ item.name | default(item.src | basename) }}"
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ potos_libreoffice_palettes }}"
+  loop_control:
+    label: "{{ item.src | default('No src specified') }}"
+  when:
+    - potos_libreoffice_palettes | length > 0
+    - item.src is defined
